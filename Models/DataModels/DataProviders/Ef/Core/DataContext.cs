@@ -16,12 +16,16 @@ namespace DataModels.DataProviders.Ef.Core
         public DbSet<Rates> Rates { get; set; } = null!;
         public DbSet<Users> Users { get; set; } = null!;
         public DbSet<ComputerZones> Zones { get; set; } = null!;
-        //protected override void OnModelCreating(ModelBuilder mb)
-        //{
-        //    //mb.Entity<Application>()
-        //    //    .HasMany<Computer>(a=>a.Installed)
-        //    //    .WithMany(c=>c.Applications)
-        //    //    .Map()
-        //}
+        protected override void OnModelCreating(ModelBuilder mb)
+        {
+            var user = new Users()
+            {
+                Id = new Guid("D702DF8D-1AF6-4172-9D5B-F5D4AFA330DB"),
+                NickName = "admin",
+                Password = Entities.Users.ToHashString("12345"),
+                Administartor = true
+            };
+            mb.Entity<Users>().HasData(user);
+        }
     }
 }

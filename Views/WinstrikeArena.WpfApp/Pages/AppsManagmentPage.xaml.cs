@@ -1,10 +1,8 @@
-﻿using DataModels;
-using MainViewModels;
+﻿using MainViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -15,22 +13,22 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using WinstrikeArena.WpfApp.Pages;
 
-namespace WinstrikeArena.WpfApp
+namespace WinstrikeArena.WpfApp.Pages
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Логика взаимодействия для AppsManagmentPage.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class AppsManagmentPage : Page
     {
-        public MainWindow()
+        private DataViewModel model;
+        public AppsManagmentPage()
         {
             InitializeComponent();
             DataContext = App.viewModel;
-            SetHelper.MainWin = this;
-            SetHelper.NaviToLogin(null);
+            if (DataContext is DataViewModel viewmodel) model = viewmodel;
         }
+
+        private void GoToAdmin(object sender, RoutedEventArgs e) => SetHelper.NaviToAdmin(null);
     }
 }
-

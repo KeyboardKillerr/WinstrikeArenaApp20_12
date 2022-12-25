@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MainViewModels;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
@@ -13,5 +14,6 @@ namespace WinstrikeArena.WpfApp
     /// </summary>
     public partial class App : Application
     {
+        public static DataViewModel viewModel = new ();
     }
 }

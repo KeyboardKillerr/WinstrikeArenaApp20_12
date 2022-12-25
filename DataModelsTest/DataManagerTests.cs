@@ -28,12 +28,12 @@ namespace DataModels.Tests
             //_ = data.Game.UpdateAsync(game).Result;
             //_ = data.Genre.UpdateAsync(genre).Result;
 
-            var genre = data.Genre.Items.FirstOrDefaultAsync().Result;
-            var game = data.Game.Items.FirstOrDefaultAsync().Result;
-            if (game == null) throw new Exception("Game");
-            if (genre == null) throw new Exception("Genre");
-            game.GamesGenres.Add(genre);
-            _ = data.Game.UpdateAsync(game).Result;
+            //var genre = data.Genre.Items.FirstOrDefaultAsync().Result;
+            //var game = data.Game.Items.FirstOrDefaultAsync().Result;
+            //if (game == null) throw new Exception("Game");
+            //if (genre == null) throw new Exception("Genre");
+            //game.GamesGenres.Add(genre);
+            //_ = data.Game.UpdateAsync(game).Result;
 
             Assert.IsFalse(false);
         }
