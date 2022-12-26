@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using ViewModelBase.Commands.AsyncCommands;
 using ViewModelBase.Commands.QuickCommands;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace MainViewModels
 {
@@ -19,7 +20,7 @@ namespace MainViewModels
         private readonly DataManager data = Helper.DataModel;
         public Command LoginCommandAsync { get; }
         public AsyncCommand ReginCommandAsync { get; }
-        public ObservableCollection<Apps> Applications { get; }
+        public ObservableCollection<string> Applications { get; }
         public AsyncCommand AddAppAsync { get; }
         public AsyncCommand DeleteAppAsync { get; }
         public AsyncCommand InstallAppAsync { get; }
@@ -34,11 +35,16 @@ namespace MainViewModels
                 }, LoginCanExecute, Helper.ErrorHandler);
             ReginCommandAsync = new AsyncCommand(reginCommandAsync, ReginCanExecute, Helper.ErrorHandler);
             AddAppAsync = new AsyncCommand(addNewApp, AddAppCanExecute, Helper.ErrorHandler);
-            DeleteAppAsync = new AsyncCommand(deleteApp, DeleteAppCanExecute, Helper.ErrorHandler);
-            Applications = new ObservableCollection<Apps>();
+            DeleteAppAsync = new AsyncCommand(() => { deleteApp; UpdateAppsList(); }, DeleteAppCanExecute, Helper.ErrorHandler);
+            Applications = new ObservableCollection<string>();
+            UpdateAppsList();
+        }
+        private async void UpdateAppsList()
+        {
+            Applications.Clear();
             foreach (var app in data.App.Items.AsEnumerable<Apps>())
             {
-                Applications.Add(app);
+                Applications.Add(app.Name);
             }
         }
         private async Task reginCommandAsync(CancellationToken _)
