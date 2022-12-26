@@ -23,6 +23,22 @@
             <ColumnDefinition/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
+        <TextBlock Grid.Row="1" Grid.Column="3" Text="Название приложения" FontSize="15" TextAlignment="Center" Margin="10,10,10,7"/>
+        <TextBlock Grid.Row="2" Grid.Column="3" Text="Описание" FontSize="15" TextAlignment="Center" Margin="10,27,10,85" Grid.RowSpan="2"/>
+        <TextBlock Grid.Row="3" Grid.Column="3" Text="Размер" FontSize="15" TextAlignment="Center" Margin="10,47,10,66" Grid.RowSpan="2"/>
+        <TextBox Grid.Row="1" Grid.Column="3" FontSize="15" Margin="10,42,10,72"
+                 Text="{Binding AppName}" Grid.RowSpan="2"/>
+        <TextBox Grid.Row="2" Grid.Column="3" FontSize="15" Margin="10,57,10,57"
+                 Text="{Binding AppDescription}" Grid.RowSpan="2"/>
+        <TextBox Grid.Row="3" Grid.Column="3" FontSize="15"
+                 Text="{Binding AppSize}" Margin="10,84,10,30" Grid.RowSpan="2"/>
+        <ListBox x:Name="DeleteAppsList" HorizontalContentAlignment="Stretch" Grid.Row="1" Grid.RowSpan="4" Grid.ColumnSpan="2"
+                 ItemsSource="{Binding Applications}"
+                 SelectedItem="{Binding Path=SelectedApp, Mode=TwoWay}"/>
+        <Button Grid.Row="5" Grid.ColumnSpan="2" Content="Удалить" FontSize="20"
+                Command="{Binding DeleteAppAsync}" CommandParameter="{Binding SelectedItem, ElementName=DeleteAppsList}"/>
+        <Button Grid.Row="5" Grid.Column="2" Grid.ColumnSpan="2" Content="Добавить" FontSize="20"
+                Command="{Binding AddAppAsync}"/>
         <Button Grid.Row="0" Grid.ColumnSpan="4" Content="Назад" FontSize="20" Click="GoToAdmin"/>
     </Grid>
 </Page>

@@ -27,6 +27,11 @@ namespace DataModels.DataProviders.Ef.Core.Repositories
             return 0;
         }
 
+        //private async IQueryable<Apps?> GetAllItemsAsync()
+        //{
+        //    Context.Add
+        //}
+
         public async Task<Apps?> GetItemByIdAsync(Guid id)
         {
             return await Items.FirstOrDefaultAsync(x => x.Id == id);

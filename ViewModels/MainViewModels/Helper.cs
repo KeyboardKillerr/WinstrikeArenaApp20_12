@@ -14,8 +14,6 @@ namespace MainViewModels
         public static DataManager DataModel = DataManager.Get(DataProvidersList.SqlServer);
         public static IErrorHandler? ErrorHandler {internal get; set; }
         public static Action<object?>? LoginGames { internal get; set; }
-        public static Action<object?>? LoginRegin { internal get; set; }
         public static Action<object?>? ReginLogin { internal get; set; }
-        public static Action<object?>? ProfileGames { internal get; set; }
     }
 }

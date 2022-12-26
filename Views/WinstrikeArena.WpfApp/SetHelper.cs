@@ -31,6 +31,7 @@ namespace WinstrikeArena.WpfApp
             Helper.ErrorHandler = new ErrorHandler();
             Helper.LoginGames = NaviToGames;
             Helper.ReginLogin = NaviToLogin;
+
             loginPage = new LoginPage();
             reginPage = new ReginPage();
             gamesPage = new GamesPage();
