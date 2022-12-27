@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Reflection.Metadata.Ecma335;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -20,11 +21,12 @@ namespace MainViewModels
         private readonly DataManager data = Helper.DataModel;
         public Command LoginCommandAsync { get; }
         public AsyncCommand ReginCommandAsync { get; }
-        public ObservableCollection<string> Applications { get; }
+        public ObservableCollection<Apps> ApplicationsList { get; }
         public AsyncCommand AddAppAsync { get; }
         public AsyncCommand DeleteAppAsync { get; }
         public AsyncCommand InstallAppAsync { get; }
         public AsyncCommand UnintsallAppAsync { get; }
+        public Computers Computer { get; }
 
         public DataViewModel()
         {
@@ -35,17 +37,9 @@ namespace MainViewModels
                 }, LoginCanExecute, Helper.ErrorHandler);
             ReginCommandAsync = new AsyncCommand(reginCommandAsync, ReginCanExecute, Helper.ErrorHandler);
             AddAppAsync = new AsyncCommand(addNewApp, AddAppCanExecute, Helper.ErrorHandler);
-            DeleteAppAsync = new AsyncCommand(() => { deleteApp; UpdateAppsList(); }, DeleteAppCanExecute, Helper.ErrorHandler);
-            Applications = new ObservableCollection<string>();
-            UpdateAppsList();
-        }
-        private async void UpdateAppsList()
-        {
-            Applications.Clear();
-            foreach (var app in data.App.Items.AsEnumerable<Apps>())
-            {
-                Applications.Add(app.Name);
-            }
+            DeleteAppAsync = new AsyncCommand( deleteApp, DeleteAppCanExecute, Helper.ErrorHandler);
+            //Computer = data.Computer.Items.First();
+            ApplicationsList = new ObservableCollection<Apps>(data.App.Items);
         }
         private async Task reginCommandAsync(CancellationToken _)
         {
@@ -72,17 +66,18 @@ namespace MainViewModels
                 SizeMb = AppSize
             };
             await data.App.UpdateAsync(app);
+            ApplicationsList.Add(app);
         }
         private async Task deleteApp(CancellationToken _)
         {
             await data.App.DeleteAsync(_selectedApp.Id);
+            ApplicationsList.Remove(_selectedApp);
         }
 
         private bool LoginCanExecute()
         {
             var user = data.User.Items.FirstOrDefault(u => u.NickName == _login);
             if (user == null) return false;
-            //var rate = data.Rate.Items.FirstOrDefault(r => r.Users == )
             return Users.ToHashString(_password)==user.Password;
         }
         private bool ReginCanExecute()

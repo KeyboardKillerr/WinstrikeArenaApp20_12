@@ -32,9 +32,13 @@
                  Text="{Binding AppDescription}" Grid.RowSpan="2"/>
         <TextBox Grid.Row="3" Grid.Column="3" FontSize="15"
                  Text="{Binding AppSize}" Margin="10,84,10,30" Grid.RowSpan="2"/>
-        <ListBox x:Name="DeleteAppsList" HorizontalContentAlignment="Stretch" Grid.Row="1" Grid.RowSpan="4" Grid.ColumnSpan="2"
-                 ItemsSource="{Binding Applications}"
-                 SelectedItem="{Binding Path=SelectedApp, Mode=TwoWay}"/>
+        <DataGrid x:Name="DeleteAppsList" HorizontalContentAlignment="Stretch" Grid.Row="1" Grid.RowSpan="4" Grid.ColumnSpan="2"
+                 ItemsSource="{Binding ApplicationsList}" IsReadOnly="True" AutoGenerateColumns="False"
+                 SelectedItem="{Binding SelectedApp, Mode=TwoWay}">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Приложения" Binding="{Binding Name}" Width="*"/>
+            </DataGrid.Columns>
+        </DataGrid>
         <Button Grid.Row="5" Grid.ColumnSpan="2" Content="Удалить" FontSize="20"
                 Command="{Binding DeleteAppAsync}" CommandParameter="{Binding SelectedItem, ElementName=DeleteAppsList}"/>
         <Button Grid.Row="5" Grid.Column="2" Grid.ColumnSpan="2" Content="Добавить" FontSize="20"

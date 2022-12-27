@@ -25,7 +25,7 @@ namespace WinstrikeArena.WpfApp.Pages
         public UsersPage()
         {
             InitializeComponent();
-            DataContext = App.viewModel;
+            DataContext =  App.viewModel;
             if (DataContext is DataViewModel viewmodel) model = viewmodel;
         }
 

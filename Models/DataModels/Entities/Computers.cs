@@ -8,7 +8,6 @@ namespace DataModels.Entities
     public class Computers : EntityBase
     {
         public string CPU { get; set; } = null!;
-        public int Number { get; set; }
         public string GPU { get; set; } = null!;
         public string RAM { get; set; } = null!;
         public string Motherboard { get; set; } = null!;
@@ -19,5 +18,6 @@ namespace DataModels.Entities
         [ForeignKey("FK_ZoneId")]
         public Guid ZoneId { get; set; }
         public ComputerZones Zone { get; set; } = null!;
+        public int Number { get; set; }
     }
 }
