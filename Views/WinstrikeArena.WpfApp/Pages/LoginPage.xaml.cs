@@ -13,6 +13,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using CaptchaGen.SkiaSharp;
+using SkiaSharp;
 
 namespace WinstrikeArena.WpfApp.Pages
 {
@@ -27,6 +29,17 @@ namespace WinstrikeArena.WpfApp.Pages
             InitializeComponent();
             DataContext = App.viewModel;
             if (DataContext is DataViewModel viewmodel) model = viewmodel;
+            DisplayCaptcha();
+            model.LoginReginVM.Notify += DisplayCaptcha;
+        }
+
+        private void DisplayCaptcha()
+        {
+            var imageSource = new BitmapImage();
+            imageSource.BeginInit();
+            imageSource.StreamSource = new CaptchaGenerator().GenerateImageAsStream(model.LoginReginVM.Captcha);
+            imageSource.EndInit();
+            CaptchaImage.Source = imageSource;
         }
 
         private void GoToRegin(object sender, RoutedEventArgs e)
@@ -36,7 +49,7 @@ namespace WinstrikeArena.WpfApp.Pages
 
         private void PassBox_PasswordChanged(object sender, RoutedEventArgs e)
         {
-            model.Password = PassBox.Password;
+            model.LoginReginVM.Password = PassBox.Password;
         }
     }
 }

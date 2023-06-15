@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
@@ -14,7 +15,8 @@ namespace DataModels.Entities
         public string? FullName { get; set; }
         public string? Email { get; set; }
         public string? PhoneNumber { get; set; }
-        public bool Administartor { get; set; }
+        [Range(1, 3)]
+        public int Role { get; set; }
         public IList<Games> FavoriteGames { get; set; } = new List<Games>();
         public IList<Rates> Rates { get; set; } = new List<Rates>();
         public static string ToHashString(string pass)

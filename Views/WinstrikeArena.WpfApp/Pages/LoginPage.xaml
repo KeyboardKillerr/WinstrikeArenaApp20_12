@@ -41,12 +41,48 @@
             <TextBlock Text="Пароль" Grid.Column="2" Grid.Row="3" TextAlignment="Center" FontSize="14"/>
 
             <Button Content="Войти" Grid.Column="1" Grid.Row="6" Grid.ColumnSpan="3" Margin="1" FontSize="11"
-                    Command="{Binding LoginCommandAsync}"/>
+                    Command="{Binding LoginReginVM.LoginCommandAsync}"/>
             <Button Content="Регистрация" Grid.Column="1" Grid.Row="7" Grid.ColumnSpan="3" Margin="1" FontSize="11" Click="GoToRegin"/>
 
             <TextBox Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="5" Grid.RowSpan="2" Background="AliceBlue" TextAlignment="Center" FontSize="14"
-                     Text="{Binding Login}"/>
+                     Text="{Binding LoginReginVM.Login}"/>
             <PasswordBox x:Name="PassBox" Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="5" Grid.RowSpan="2" Background="AliceBlue" FontSize="14" PasswordChanged="PassBox_PasswordChanged"/>
+            
         </Grid>
+
+        <StackPanel
+            Orientation="Vertical" 
+            Grid.Column="2"
+            Grid.Row="1"
+            Grid.RowSpan="2">
+
+            <TextBlock
+                Text="Капча"
+                FontSize="14"
+                TextAlignment="Center"/>
+
+            <TextBox 
+                x:Name="CaptchaInput" 
+                Width="104" 
+                Height="32"
+                Text="{Binding LoginReginVM.EnteredCaptcha}"/>
+
+            <Image 
+                x:Name="CaptchaImage" 
+                Width="83"  
+                Height="75"/>
+
+            <Grid>
+
+                <Button
+                    Content="Обновить"
+                    Margin="5"
+                    Width="100"
+                    FontSize="11"
+                    Command="{Binding LoginReginVM.UpdateCaptchaCommand}"/>
+
+            </Grid>
+        </StackPanel>
+
     </Grid>
 </Page>

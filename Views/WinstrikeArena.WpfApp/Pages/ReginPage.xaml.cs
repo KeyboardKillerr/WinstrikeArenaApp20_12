@@ -1,4 +1,5 @@
-﻿using MainViewModels;
+﻿using CaptchaGen.SkiaSharp;
+using MainViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -28,6 +29,17 @@ namespace WinstrikeArena.WpfApp.Pages
             InitializeComponent();
             DataContext = App.viewModel;
             if (DataContext is DataViewModel viewmodel) model = viewmodel;
+            DisplayCaptcha();
+            model.LoginReginVM.Notify += DisplayCaptcha;
+        }
+
+        private void DisplayCaptcha()
+        {
+            var imageSource = new BitmapImage();
+            imageSource.BeginInit();
+            imageSource.StreamSource = new CaptchaGenerator().GenerateImageAsStream(model.LoginReginVM.Captcha);
+            imageSource.EndInit();
+            CaptchaImage.Source = imageSource;
         }
 
         private void Back(object sender, RoutedEventArgs e)
@@ -37,7 +49,7 @@ namespace WinstrikeArena.WpfApp.Pages
 
         private void PassBox_PasswordChanged(object sender, RoutedEventArgs e)
         {
-            model.Password = PassBox.Password;
+            model.LoginReginVM.Password = PassBox.Password;
         }
     }
 }

@@ -10,7 +10,6 @@ namespace DataModels
 {
     public class DataManager
     {
-        public IAppsRep App { get; }
         public IComputersRep Computer { get; }
         public IGamesRep Game { get; }
         public IGenresRep Genre { get; }
@@ -21,9 +20,8 @@ namespace DataModels
 
         //public DbContext? Context { get; }
 
-        private DataManager(IAppsRep app, IComputersRep computer, IGamesRep game, IGenresRep genre, ILoginLogsRep loginLog, IRatesRep rate, IUsersRep user, IZonesRep zone)
+        private DataManager(IComputersRep computer, IGamesRep game, IGenresRep genre, ILoginLogsRep loginLog, IRatesRep rate, IUsersRep user, IZonesRep zone)
         {
-            App = app;
             Computer = computer;
             Game = game;
             Genre = genre;
@@ -46,7 +44,6 @@ namespace DataModels
                     if (!sqlite.Database.EnsureCreated()) throw new Exception();
                     return new DataManager
                     (
-                        new EfApps(sqlite),
                         new EfComputers(sqlite),
                         new EfGames(sqlite),
                         new EfGenres(sqlite),
@@ -62,7 +59,6 @@ namespace DataModels
                     context.Database.EnsureCreated();
                     return new DataManager
                     (
-                        new EfApps(context),
                         new EfComputers(context),
                         new EfGames(context),
                         new EfGenres(context),

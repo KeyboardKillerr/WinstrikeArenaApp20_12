@@ -15,7 +15,6 @@ namespace DataModels.DataProviders.Ef.Core.Repositories
         public EfComputers(DataContext context) => Context = context;
 
         public IQueryable<Computers> Items => Context.Computers
-            .Include(x => x.InstalledApps)
             .Include(x => x.InstalledGames)
             .Include(x => x.ZoneId);
 

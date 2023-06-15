@@ -1,9 +1,11 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace DataModels.Entities
 {
+    [Index(nameof(Name))]
     public class Genres : EntityBase
     {
         public string Name { get; set; } = null!;

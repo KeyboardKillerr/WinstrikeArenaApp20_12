@@ -17,33 +17,47 @@ using System.Windows.Shapes;
 namespace WinstrikeArena.WpfApp.Pages
 {
     /// <summary>
-    /// Логика взаимодействия для GamesPage.xaml
+    /// Логика взаимодействия для MainPage.xaml
     /// </summary>
-    public partial class GamesPage : Page
+    public partial class MainPage : Page
     {
         private DataViewModel model;
-        public GamesPage()
+        public MainPage()
         {
             InitializeComponent();
             DataContext = App.viewModel;
             if (DataContext is DataViewModel viewmodel) model = viewmodel;
         }
 
-        private void Button_IsEnabledChanged(object sender, DependencyPropertyChangedEventArgs e)
+        private void AdminButton_IsEnabledChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
             if (e.NewValue == e.OldValue) return;
             AdminBtn.Visibility = (bool)e.NewValue ? Visibility.Visible : Visibility.Hidden;
         }
 
+        private void ModerButton_IsEnabledChanged(object sender, DependencyPropertyChangedEventArgs e)
+        {
+            if (e.NewValue == e.OldValue) return;
+            ModerBtn.Visibility = (bool)e.NewValue ? Visibility.Visible : Visibility.Hidden;
+        }
+
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
-            AdminBtn.Visibility = model.CurrentUser.Administartor ? Visibility.Visible : Visibility.Hidden;
+            //AdminBtn.Visibility = model.CurrentUser.Administartor ? Visibility.Visible : Visibility.Hidden;
+            if (model.LoginReginVM.CurrentUser.Role == 2) ModerBtn.Visibility = Visibility.Visible;
+            else if (model.LoginReginVM.CurrentUser.Role == 3) AdminBtn.Visibility = Visibility.Visible;
+            else
+            {
+                ModerBtn.Visibility = Visibility.Hidden;
+                AdminBtn.Visibility = Visibility.Hidden;
+            }
         }
 
         private void GoToLogin(object sender, RoutedEventArgs e) => SetHelper.NaviToLogin(null);
         private void GoToAdmin(object sender, RoutedEventArgs e) => SetHelper.NaviToAdmin(null);
         private void GoToFavorites(object sender, RoutedEventArgs e) => SetHelper.NaviToFavorites(null);
-        private void GoToApps(object sender, RoutedEventArgs e) => SetHelper.NaviToApps(null);
+        private void GoToRents(object sender, RoutedEventArgs e) => SetHelper.NaviToRents(null);
         private void GoToProfile(object sender, RoutedEventArgs e) => SetHelper.NaviToProfile(null);
+        private void GoToModer(object sender, RoutedEventArgs e) => SetHelper.NaviToModer(null);
     }
 }

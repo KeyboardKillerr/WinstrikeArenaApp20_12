@@ -3,12 +3,12 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using EFCore.CheckConstraints;
 
 namespace DataModels.DataProviders.Ef.Core
 {
     public class DataContext : DbContext
     {
-        public DbSet<Apps> Applications { get; set; } = null!;
         public DbSet<Computers> Computers { get; set; } = null!;
         public DbSet<Games> Games { get; set; } = null!;
         public DbSet<Genres> Genres { get; set; } = null!;
@@ -20,10 +20,10 @@ namespace DataModels.DataProviders.Ef.Core
         {
             var user = new Users()
             {
-                Id = new Guid("D702DF8D-1AF6-4172-9D5B-F5D4AFA330DB"),
+                Id = Guid.NewGuid(),
                 NickName = "admin",
                 Password = Entities.Users.ToHashString("12345"),
-                Administartor = true
+                Role = 3
             };
             mb.Entity<Users>().HasData(user);
         }

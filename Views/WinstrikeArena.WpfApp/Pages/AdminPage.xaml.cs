@@ -29,10 +29,10 @@ namespace WinstrikeArena.WpfApp.Pages
             if (DataContext is DataViewModel viewmodel) model = viewmodel;
         }
 
-        private void GoToGames(object sender, RoutedEventArgs e) => SetHelper.NaviToGames(null);
+        private void GoToGames(object sender, RoutedEventArgs e) => SetHelper.NaviToMain(null);
+        private void GoToComputers(object sender, RoutedEventArgs e) => SetHelper.NaviToComputers(null);
         private void GoToLogs(object sender, RoutedEventArgs e) => SetHelper.NaviToLogs(null);
         private void GoToUsers(object sender, RoutedEventArgs e) => SetHelper.NaviToUsers(null);
-        private void GoToApps(object sender, RoutedEventArgs e) => SetHelper.NaviToAppsManagment(null);
         private void GoToGamesAndGenres(object sender, RoutedEventArgs e) => SetHelper.NaviToGamesAndGenres(null);
     }
 }

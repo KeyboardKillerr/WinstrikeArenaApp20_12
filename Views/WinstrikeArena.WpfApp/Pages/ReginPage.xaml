@@ -51,19 +51,52 @@
             <TextBlock Text="Номер телефона" Grid.Column="1" Grid.Row="12" Grid.ColumnSpan="3" TextAlignment="Center" FontSize="14"/>
 
             <Button Content="Регистрация" Grid.Column="0" Grid.Row="16" Grid.ColumnSpan="2" Margin="1" FontSize="11"
-                    Command="{Binding ReginCommandAsync}"/>
+                    Command="{Binding LoginReginVM.ReginCommandAsync}"/>
             <Button Content="Назад" Grid.Column="3" Grid.Row="16" Grid.ColumnSpan="2" Margin="1" FontSize="11" Click="Back"/>
 
             <TextBox Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="5" Grid.RowSpan="2" Background="AliceBlue" TextAlignment="Center" FontSize="14"
-                     Text="{Binding Login}"/>
+                     Text="{Binding LoginReginVM.Login}"/>
             <PasswordBox x:Name="PassBox" Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="5" Grid.RowSpan="2" Background="AliceBlue" FontSize="14" PasswordChanged="PassBox_PasswordChanged"/>
             <TextBox Grid.Column="0" Grid.Row="7" Grid.ColumnSpan="5" Grid.RowSpan="2" Background="AliceBlue" TextAlignment="Center" FontSize="14"
-                     Text="{Binding Name}"/>
+                     Text="{Binding LoginReginVM.Name}"/>
             <TextBox Grid.Column="0" Grid.Row="10" Grid.ColumnSpan="5" Grid.RowSpan="2" Background="AliceBlue" TextAlignment="Center" FontSize="14"
-                     Text="{Binding Email}"/>
+                     Text="{Binding LoginReginVM.Email}"/>
             <TextBox Grid.Column="0" Grid.Row="13" Grid.ColumnSpan="5" Grid.RowSpan="2" Background="AliceBlue" TextAlignment="Center" FontSize="14"
-                     Text="{Binding PhoneNumber}"/>
+                     Text="{Binding LoginReginVM.PhoneNumber}"/>
         </Grid>
+        <StackPanel
+            Orientation="Vertical" 
+            Grid.Column="2"
+            Grid.Row="1"
+            Grid.RowSpan="2">
+
+            <TextBlock
+                Text="Капча"
+                FontSize="14"
+                TextAlignment="Center"/>
+
+            <TextBox 
+                x:Name="CaptchaInput" 
+                Width="104" 
+                Height="32"
+                Text="{Binding LoginReginVM.EnteredCaptcha}"/>
+
+            <Image 
+                x:Name="CaptchaImage" 
+                Width="83"  
+                Height="75"/>
+
+            <Grid>
+
+                <Button
+                    Content="Обновить"
+                    Margin="5"
+                    Width="100"
+                    FontSize="11"
+                    Command="{Binding LoginReginVM.UpdateCaptchaCommand}"/>
+
+            </Grid>
+        </StackPanel>
         <TextBlock Text="* - Основное поле" Foreground="Red" FontSize="20" TextAlignment="Center"/>
     </Grid>
 </Page>

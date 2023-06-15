@@ -24,10 +24,8 @@ namespace DataModels.Tests
             //    Name = "TestGame",
             //    SizeMb = 5
             //};
-
             //_ = data.Game.UpdateAsync(game).Result;
             //_ = data.Genre.UpdateAsync(genre).Result;
-
             //var genre = data.Genre.Items.FirstOrDefaultAsync().Result;
             //var game = data.Game.Items.FirstOrDefaultAsync().Result;
             //if (game == null) throw new Exception("Game");

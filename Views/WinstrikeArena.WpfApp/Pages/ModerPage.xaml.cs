@@ -1,5 +1,4 @@
-﻿using MainViewModels;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,18 +16,13 @@ using System.Windows.Shapes;
 namespace WinstrikeArena.WpfApp.Pages
 {
     /// <summary>
-    /// Логика взаимодействия для AppsPage.xaml
+    /// Логика взаимодействия для ModerPage.xaml
     /// </summary>
-    public partial class AppsPage : Page
+    public partial class ModerPage : Page
     {
-        private DataViewModel model;
-        public AppsPage()
+        public ModerPage()
         {
             InitializeComponent();
-            DataContext = App.viewModel;
-            if (DataContext is DataViewModel viewmodel) model = viewmodel;
         }
-
-        private void GoToGames(object sender, RoutedEventArgs e) => SetHelper.NaviToGames(null);
     }
 }

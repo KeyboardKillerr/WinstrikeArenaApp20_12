@@ -12,7 +12,7 @@ namespace DataModels.DataProviders.Ef.Contexts
         protected override void OnConfiguring(DbContextOptionsBuilder builder)
         {
             //builder.UseSqlServer(@"Data Source = dbsrv\mam2022; Initial Catalog = KuznetsovKP3; Integrated Security = True;");
-            builder.UseSqlServer(@"Data Source = DESKTOP-P105T05; Initial Catalog = KP2; Integrated Security = True;");
+            builder.UseSqlServer(@"Data Source = DESKTOP-P105T05; Initial Catalog = KP3; Integrated Security = True;");
         }
     }
 }

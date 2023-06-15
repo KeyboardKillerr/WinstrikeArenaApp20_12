@@ -1,5 +1,4 @@
-﻿using MainViewModels;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,18 +16,13 @@ using System.Windows.Shapes;
 namespace WinstrikeArena.WpfApp.Pages
 {
     /// <summary>
-    /// Логика взаимодействия для AppsManagmentPage.xaml
+    /// Логика взаимодействия для UsersRentsPage.xaml
     /// </summary>
-    public partial class AppsManagmentPage : Page
+    public partial class UsersRentsPage : Page
     {
-        private DataViewModel model;
-        public AppsManagmentPage()
+        public UsersRentsPage()
         {
             InitializeComponent();
-            DataContext = App.viewModel;
-            if (DataContext is DataViewModel viewmodel) model = viewmodel;
         }
-
-        private void GoToAdmin(object sender, RoutedEventArgs e) => SetHelper.NaviToAdmin(null);
     }
 }

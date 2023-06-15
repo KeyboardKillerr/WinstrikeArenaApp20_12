@@ -1,5 +1,4 @@
-﻿using MainViewModels;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,18 +16,13 @@ using System.Windows.Shapes;
 namespace WinstrikeArena.WpfApp.Pages
 {
     /// <summary>
-    /// Логика взаимодействия для ProfilePage.xaml
+    /// Логика взаимодействия для ComputersPage.xaml
     /// </summary>
-    public partial class ProfilePage : Page
+    public partial class ComputersPage : Page
     {
-        private DataViewModel model;
-        public ProfilePage()
+        public ComputersPage()
         {
             InitializeComponent();
-            DataContext = App.viewModel;
-            if (DataContext is DataViewModel viewmodel) model = viewmodel;
         }
-
-        private void GoToGames(object sender, RoutedEventArgs e) => SetHelper.NaviToMain(null);
     }
 }

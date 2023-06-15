@@ -1,4 +1,4 @@
-﻿<Page x:Class="WinstrikeArena.WpfApp.Pages.GamesPage"
+﻿<Page x:Class="WinstrikeArena.WpfApp.Pages.MainPage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -6,12 +6,13 @@
       xmlns:local="clr-namespace:WinstrikeArena.WpfApp.Pages"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="GamesPage"
+      Title="MainPage"
       Background="White" Loaded="Page_Loaded">
 
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="0.4*"/>
+            <RowDefinition/>
             <RowDefinition/>
             <RowDefinition/>
             <RowDefinition/>
@@ -26,13 +27,12 @@
         </Grid.ColumnDefinitions>
         <StackPanel Grid.Row="1" Grid.Column="1" Grid.RowSpan="5" Grid.ColumnSpan="5"/>
         <TextBlock TextAlignment="Center" FontSize="20" Text="Меню"/>
-        <TextBlock Grid.Column="1" TextAlignment="Center" FontSize="20" Text="{Binding Login}"/>
-        <TextBlock Grid.Column="2" TextAlignment="Center" FontSize="20" Text="{Binding CurrentPageName}"/>
-        <TextBlock Grid.Column="3" TextAlignment="Center" FontSize="20" Text="{Binding TimeLeft}"/>
+        <TextBlock Grid.Column="1" TextAlignment="Center" FontSize="20" Text="{Binding LoginReginVM.CurrentUser.Name}"/>
         <Button Grid.Row="1" Content="Избранное" Click="GoToFavorites"/>
-        <Button Grid.Row="2" Content="Приложения" Click="GoToApps"/>
+        <Button Grid.Row="2" Content="Арендовать компьютер" Click="GoToRents"/>
         <Button Grid.Row="3" Content="Профиль" Click="GoToProfile"/>
         <Button Grid.Row="4" Content="Выход" Click="GoToLogin"/>
-        <Button x:Name="AdminBtn" Grid.Row="5" Content="Админ панель" Click="GoToAdmin" IsEnabled="{Binding IsAdmin, UpdateSourceTrigger=PropertyChanged}" IsEnabledChanged="Button_IsEnabledChanged"/>
+        <Button x:Name="AdminBtn" Grid.Row="5" Content="Админ панель" Click="GoToAdmin" IsEnabled="{Binding LoginReginVM.IsAdmin, UpdateSourceTrigger=PropertyChanged}" IsEnabledChanged="AdminButton_IsEnabledChanged"/>
+        <Button x:Name="ModerBtn" Grid.Row="6" Content="Модер панель" Click="GoToModer" IsEnabled="{Binding LoginReginVM.IsModer, UpdateSourceTrigger=PropertyChanged}" IsEnabledChanged="ModerButton_IsEnabledChanged"/>
     </Grid>
 </Page>

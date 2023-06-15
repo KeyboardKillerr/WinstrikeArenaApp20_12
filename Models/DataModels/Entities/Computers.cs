@@ -14,7 +14,6 @@ namespace DataModels.Entities
         public string HardDrive { get; set; } = null!;
         public int HardDriveVolumeMb { get; set; }
         public IList<Games> InstalledGames { get; set; } = new List<Games>();
-        public IList<Apps> InstalledApps { get; set; } = new List<Apps>();
         [ForeignKey("FK_ZoneId")]
         public Guid ZoneId { get; set; }
         public ComputerZones Zone { get; set; } = null!;
