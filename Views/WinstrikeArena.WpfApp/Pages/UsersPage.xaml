@@ -5,10 +5,13 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:WinstrikeArena.WpfApp.Pages"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
-      Title="UsersPage" Background="White">
+      d:DesignHeight="450" 
+      d:DesignWidth="800"
+      Title="UsersPage" 
+      Background="White">
 
     <Grid>
+
         <Grid.RowDefinitions>
             <RowDefinition Height="0.4*"/>
             <RowDefinition/>
@@ -23,6 +26,192 @@
             <ColumnDefinition/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <Button Grid.Row="0" Grid.ColumnSpan="4" Content="Назад" FontSize="20" Click="GoToAdmin"/>
+
+        <Button 
+            Grid.Row="0" 
+            Grid.ColumnSpan="4" 
+            Content="Назад" 
+            FontSize="20" 
+            Click="GoToAdmin"/>
+
+        <DataGrid
+            x:Name="UsersList"
+            HorizontalContentAlignment="Stretch"
+            Grid.Row="1"
+            Grid.RowSpan="4"
+            Grid.ColumnSpan="3"
+            ItemsSource="{Binding UsersVM.UsersList, UpdateSourceTrigger=PropertyChanged}"
+            IsReadOnly="True" AutoGenerateColumns="False"
+            SelectedItem="{Binding UsersVM.SelectedUser, Mode=TwoWay}">
+
+            <DataGrid.Columns>
+                <DataGridTextColumn
+                    Header="Логин"
+                    Binding="{Binding NickName}"
+                    Width="*"/>
+                <DataGridTextColumn
+                    Header="Пароль"
+                    Binding="{Binding Password}"
+                    Width="*"/>
+                <DataGridTextColumn
+                    Header="Имя"
+                    Binding="{Binding FullName}"
+                    Width="*"/>
+                <DataGridTextColumn
+                    Header="EMail"
+                    Binding="{Binding Email}"
+                    Width="*"/>
+                <DataGridTextColumn
+                    Header="Номер телефона"
+                    Binding="{Binding PhoneNumber}"
+                    Width="*"/>
+                <DataGridTextColumn
+                    Header="Роль"
+                    Binding="{Binding Role}"
+                    Width="0.4*"/>
+            </DataGrid.Columns>
+
+        </DataGrid>
+
+        <Button
+            Grid.Row="5"
+            Grid.Column="1"
+            Grid.ColumnSpan="1"
+            Content="Удалить выбраное"
+            FontSize="20"
+            Command="{Binding UsersVM.DeleteUser, UpdateSourceTrigger=PropertyChanged}"
+            CommandParameter="{Binding SelectedItem, ElementName=UsersList}"/>
+
+        <Button
+            Grid.Row="5"
+            Grid.Column="0"
+            Grid.ColumnSpan="1"
+            Content="Отменить выбор"
+            FontSize="20"
+            Command="{Binding UsersVM.CancelSelect, UpdateSourceTrigger=PropertyChanged}"
+            CommandParameter="{Binding SelectedItem, ElementName=UsersList}"/>
+
+        <Button
+            Grid.Row="5"
+            Grid.Column="2"
+            Content="Изменить выбраное"
+            FontSize="20"
+            Command="{Binding UsersVM.UpdateUser, UpdateSourceTrigger=PropertyChanged}"/>
+
+        <Button
+            Grid.Row="5"
+            Grid.Column="3"
+            Content="Добавить"
+            FontSize="20"
+            Command="{Binding UsersVM.AddUser, UpdateSourceTrigger=PropertyChanged}"/>
+
+        <Button 
+            Grid.Row="0"
+            Grid.ColumnSpan="4"
+            Content="Назад"
+            FontSize="20"
+            Click="GoToAdmin"/>
+
+        <Grid
+            Grid.Row="1"
+            Grid.Column="3"
+            Grid.RowSpan="4">
+
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+
+            <TextBlock
+                Grid.Row="0"
+                Text="Логин"
+                FontSize="13"
+                TextAlignment="Center"
+                Margin="10,0,10,0"/>
+
+            <TextBlock
+                Grid.Row="2"
+                Text="Пароль"
+                FontSize="13"
+                TextAlignment="Center"
+                Margin="10,0,10,0"/>
+
+            <TextBlock
+                Grid.Row="4"
+                Text="Имя"
+                FontSize="15"
+                TextAlignment="Center"
+                Margin="10,0,10,0"/>
+
+            <TextBlock
+                Grid.Row="6"
+                Text="EMail"
+                FontSize="15"
+                TextAlignment="Center"
+                Margin="10,0,10,0"/>
+
+            <TextBlock
+                Grid.Row="8"
+                Text="Номер телефона"
+                FontSize="15"
+                TextAlignment="Center"
+                Margin="10,0,10,0"/>
+
+            <TextBlock
+                Grid.Row="10"
+                Text="Роль"
+                FontSize="15"
+                TextAlignment="Center"
+                Margin="10,0,10,0"/>
+
+            <TextBox
+                Grid.Row="1"
+                FontSize="13"
+                Margin="10,0,10,0"
+                Text="{Binding UsersVM.Login}"/>
+
+            <TextBox
+                Grid.Row="3"
+                FontSize="13"
+                Margin="10,0,10,0"
+                Text="{Binding UsersVM.Password}"/>
+
+            <TextBox
+                Grid.Row="5"
+                FontSize="13"
+                Margin="10,0,10,0"
+                Text="{Binding UsersVM.Name}"/>
+
+            <TextBox
+                Grid.Row="7"
+                FontSize="13"
+                Margin="10,0,10,0"
+                Text="{Binding UsersVM.Email}"/>
+
+            <TextBox
+                Grid.Row="9"
+                FontSize="13"
+                Margin="10,0,10,0"
+                Text="{Binding UsersVM.PhoneNumber}"/>
+
+            <TextBox
+                Grid.Row="11"
+                FontSize="13"
+                Margin="10,0,10,0"
+                Text="{Binding UsersVM.Role}"/>
+
+        </Grid>
+
     </Grid>
+
 </Page>

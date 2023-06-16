@@ -5,11 +5,13 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:WinstrikeArena.WpfApp.Pages"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+      d:DesignHeight="450" 
+      d:DesignWidth="800"
       Title="ReginPage"
       Background="White">
 
     <Grid>
+        
         <Grid.RowDefinitions>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
@@ -17,7 +19,11 @@
             <ColumnDefinition/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <Grid Grid.Row="1" Grid.Column="1">
+        
+        <Grid 
+            Grid.Row="1" 
+            Grid.Column="1">
+            
             <Grid.RowDefinitions>
                 <RowDefinition/>
                 <RowDefinition/>
@@ -44,26 +50,113 @@
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
             
-            <TextBlock Text="Логин*" Grid.Column="2" Grid.Row="0" TextAlignment="Center" FontSize="14" Foreground="Red"/>
-            <TextBlock Text="Пароль*" Grid.Column="2" Grid.Row="3" TextAlignment="Center" FontSize="14" Foreground="Red"/>
-            <TextBlock Text="Имя" Grid.Column="2" Grid.Row="6" TextAlignment="Center" FontSize="14"/>
-            <TextBlock Text="EMail" Grid.Column="2" Grid.Row="9" TextAlignment="Center" FontSize="14"/>
-            <TextBlock Text="Номер телефона" Grid.Column="1" Grid.Row="12" Grid.ColumnSpan="3" TextAlignment="Center" FontSize="14"/>
+            <TextBlock 
+                Text="Логин*" 
+                Grid.Column="2" 
+                Grid.Row="0" 
+                TextAlignment="Center" 
+                FontSize="14" 
+                Foreground="Red"/>
+            
+            <TextBlock 
+                Text="Пароль*" 
+                Grid.Column="2" 
+                Grid.Row="3" 
+                TextAlignment="Center" 
+                FontSize="14" 
+                Foreground="Red"/>
+            
+            <TextBlock 
+                Text="Имя" 
+                Grid.Column="2" 
+                Grid.Row="6" 
+                TextAlignment="Center" 
+                FontSize="14"/>
+            
+            <TextBlock 
+                Text="EMail" 
+                Grid.Column="2" 
+                Grid.Row="9" 
+                TextAlignment="Center" 
+                FontSize="14"/>
+            
+            <TextBlock 
+                Text="Номер телефона" 
+                Grid.Column="1" 
+                Grid.Row="12" 
+                Grid.ColumnSpan="3" 
+                TextAlignment="Center" 
+                FontSize="14"/>
 
-            <Button Content="Регистрация" Grid.Column="0" Grid.Row="16" Grid.ColumnSpan="2" Margin="1" FontSize="11"
-                    Command="{Binding LoginReginVM.ReginCommandAsync}"/>
-            <Button Content="Назад" Grid.Column="3" Grid.Row="16" Grid.ColumnSpan="2" Margin="1" FontSize="11" Click="Back"/>
+            <Button 
+                Content="Регистрация" 
+                Grid.Column="0" 
+                Grid.Row="16" 
+                Grid.ColumnSpan="2" 
+                Margin="1" 
+                FontSize="11"
+                Command="{Binding LoginReginVM.ReginCommand}"/>
+            
+            <Button 
+                Content="Назад"
+                Grid.Column="3" 
+                Grid.Row="16"
+                Grid.ColumnSpan="2" 
+                Margin="1" 
+                FontSize="11" 
+                Click="Back"/>
 
-            <TextBox Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="5" Grid.RowSpan="2" Background="AliceBlue" TextAlignment="Center" FontSize="14"
-                     Text="{Binding LoginReginVM.Login}"/>
-            <PasswordBox x:Name="PassBox" Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="5" Grid.RowSpan="2" Background="AliceBlue" FontSize="14" PasswordChanged="PassBox_PasswordChanged"/>
-            <TextBox Grid.Column="0" Grid.Row="7" Grid.ColumnSpan="5" Grid.RowSpan="2" Background="AliceBlue" TextAlignment="Center" FontSize="14"
-                     Text="{Binding LoginReginVM.Name}"/>
-            <TextBox Grid.Column="0" Grid.Row="10" Grid.ColumnSpan="5" Grid.RowSpan="2" Background="AliceBlue" TextAlignment="Center" FontSize="14"
-                     Text="{Binding LoginReginVM.Email}"/>
-            <TextBox Grid.Column="0" Grid.Row="13" Grid.ColumnSpan="5" Grid.RowSpan="2" Background="AliceBlue" TextAlignment="Center" FontSize="14"
-                     Text="{Binding LoginReginVM.PhoneNumber}"/>
+            <TextBox 
+                Grid.Column="0" 
+                Grid.Row="1" 
+                Grid.ColumnSpan="5" 
+                Grid.RowSpan="2" 
+                Background="AliceBlue" 
+                TextAlignment="Center" 
+                FontSize="14"
+                Text="{Binding LoginReginVM.Login}"/>
+            
+            <PasswordBox 
+                x:Name="PassBox" 
+                Grid.Column="0" 
+                Grid.Row="4" 
+                Grid.ColumnSpan="5" 
+                Grid.RowSpan="2" 
+                Background="AliceBlue" 
+                FontSize="14" 
+                PasswordChanged="PassBox_PasswordChanged"/>
+            
+            <TextBox 
+                Grid.Column="0" 
+                Grid.Row="7" 
+                Grid.ColumnSpan="5" 
+                Grid.RowSpan="2" 
+                Background="AliceBlue" 
+                TextAlignment="Center" FontSize="14"
+                Text="{Binding LoginReginVM.Name}"/>
+            
+            <TextBox 
+                Grid.Column="0" 
+                Grid.Row="10" 
+                Grid.ColumnSpan="5" 
+                Grid.RowSpan="2" 
+                Background="AliceBlue" 
+                TextAlignment="Center" 
+                FontSize="14"
+                Text="{Binding LoginReginVM.Email}"/>
+            
+            <TextBox 
+                Grid.Column="0" 
+                Grid.Row="13" 
+                Grid.ColumnSpan="5" 
+                Grid.RowSpan="2" 
+                Background="AliceBlue" 
+                TextAlignment="Center" 
+                FontSize="14"
+                Text="{Binding LoginReginVM.PhoneNumber}"/>
+            
         </Grid>
+        
         <StackPanel
             Orientation="Vertical" 
             Grid.Column="2"
@@ -96,7 +189,15 @@
                     Command="{Binding LoginReginVM.UpdateCaptchaCommand}"/>
 
             </Grid>
+            
         </StackPanel>
-        <TextBlock Text="* - Основное поле" Foreground="Red" FontSize="20" TextAlignment="Center"/>
+        
+        <TextBlock 
+            Text="* - Основное поле" 
+            Foreground="Red" 
+            FontSize="20" 
+            TextAlignment="Center"/>
+    
     </Grid>
+    
 </Page>

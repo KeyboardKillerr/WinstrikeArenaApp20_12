@@ -17,7 +17,6 @@ namespace WinstrikeArena.WpfApp
     internal static class SetHelper
     {
         public static MainWindow MainWin { get; set; }
-        public static readonly DataManager DataModel = Helper.DataModel;
         private static Page loginPage { get; set; }
         private static Page reginPage { get; set; }
         private static Page mainPage { get; set; }
@@ -36,6 +35,7 @@ namespace WinstrikeArena.WpfApp
             Helper.ErrorHandler = new ErrorHandler();
             Helper.LoginGames = NaviToMain;
             Helper.ReginLogin = NaviToLogin;
+            Helper.UnlogUser = NaviToLogin;
 
             loginPage = new LoginPage();
             reginPage = new ReginPage();

@@ -2,6 +2,7 @@
 using DataModels.Entities;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -17,15 +18,16 @@ namespace MainViewModels.VMs
         public Command LoginCommand { get; }
         public Command ReginCommand { get; }
         public Command UpdateCaptchaCommand { get; }
+        public Command UnlogCommand { get; }
         public LoginReginViewModel()
         {
-            LoginCommand = new Command(() =>
+            LoginCommand = new Command(loginCommand, loginCanExecute, Helper.ErrorHandler);
+            ReginCommand = new Command(reginCommand, reginCanExecute, Helper.ErrorHandler);
+            UnlogCommand = new Command(unlogCommand, canExecute, Helper.ErrorHandler);
+            UpdateCaptchaCommand = new Command(() =>
             {
                 UpdateCaptcha();
-                Helper.LoginGames?.Invoke(null);
-                CurrentUser = data.User.Items.FirstOrDefault(u => u.NickName == _login);
-            }, LoginCanExecute, Helper.ErrorHandler);
-            ReginCommand = new Command(reginCommandAsync, ReginCanExecute, Helper.ErrorHandler);
+            }, canExecute, Helper.ErrorHandler);
             GenerateCaptchaText();
         }
 
@@ -70,7 +72,7 @@ namespace MainViewModels.VMs
             return true;
         }
 
-        private void reginCommandAsync()
+        private async void reginCommand()
         {
             var user = new Users()
             {
@@ -80,25 +82,39 @@ namespace MainViewModels.VMs
                 Email = _email,
                 PhoneNumber = _phoneNumber,
                 Birhtday = _birthday,
-                Role = 0
+                Role = 1
             };
             Helper.ReginLogin?.Invoke(null);
-            data.User.UpdateAsync(user);
+            await data.User.UpdateAsync(user);
+        }
+        private void loginCommand()
+        {
+            UpdateCaptcha();
+            CurrentUser = data.User.Items.FirstOrDefault(u => u.NickName == _login);
+            Helper.LoginGames?.Invoke(null);
+            Helper.CurrentUser = CurrentUser;
+        }
+        private void unlogCommand()
+        {
+            _currentUser = null;
+            Helper.CurrentUser = null;
+            Helper.UnlogUser?.Invoke(null);
         }
 
-        private bool LoginCanExecute()
+        private bool loginCanExecute()
         {
             if (!VerifyCaptcha()) return false;
             var user = data.User.Items.FirstOrDefault(u => u.NickName == _login);
             if (user == null) return false;
             return Users.ToHashString(_password) == user.Password;
         }
-        private bool ReginCanExecute()
+        private bool reginCanExecute()
         {
             if (_login.Length < 1 && _password.Length < 1) return false;
             var user = data.User.Items.FirstOrDefault(u => u.NickName == _login);
             return user == null;
         }
+        private bool canExecute() { return true; }
 
         private Users? _currentUser = null;
         public Users? CurrentUser
@@ -108,6 +124,7 @@ namespace MainViewModels.VMs
             {
                 if (Set(ref _currentUser, value))
                 {
+                    Helper.CurrentUser = value;
                 }
             }
         }

@@ -5,48 +5,97 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:WinstrikeArena.WpfApp.Pages"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
-      Title="LoginPage" Background="White">
+      d:DesignHeight="450" 
+      d:DesignWidth="800"
+      Title="LoginPage" 
+      Background="White">
     
     <Grid>
+        
         <Grid.RowDefinitions>
-            <RowDefinition></RowDefinition>
-            <RowDefinition></RowDefinition>
-            <RowDefinition></RowDefinition>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition></ColumnDefinition>
-            <ColumnDefinition></ColumnDefinition>
-            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <Grid Grid.Row="1" Grid.Column="1">
+        
+        <Grid
+            Grid.Row="1"
+            Grid.Column="1">
+            
             <Grid.RowDefinitions>
-                <RowDefinition></RowDefinition>
-                <RowDefinition></RowDefinition>
-                <RowDefinition></RowDefinition>
-                <RowDefinition></RowDefinition>
-                <RowDefinition></RowDefinition>
-                <RowDefinition></RowDefinition>
-                <RowDefinition></RowDefinition>
-                <RowDefinition></RowDefinition>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition></ColumnDefinition>
-                <ColumnDefinition></ColumnDefinition>
-                <ColumnDefinition></ColumnDefinition>
-                <ColumnDefinition></ColumnDefinition>
-                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-            <TextBlock Text="Логин" Grid.Column="2" Grid.Row="0" TextAlignment="Center" FontSize="14"></TextBlock>
-            <TextBlock Text="Пароль" Grid.Column="2" Grid.Row="3" TextAlignment="Center" FontSize="14"/>
 
-            <Button Content="Войти" Grid.Column="1" Grid.Row="6" Grid.ColumnSpan="3" Margin="1" FontSize="11"
-                    Command="{Binding LoginReginVM.LoginCommandAsync}"/>
-            <Button Content="Регистрация" Grid.Column="1" Grid.Row="7" Grid.ColumnSpan="3" Margin="1" FontSize="11" Click="GoToRegin"/>
+            <TextBlock 
+                Text="Логин" 
+                Grid.Column="2" 
+                Grid.Row="0" 
+                TextAlignment="Center" 
+                FontSize="14"/>
+            
+            <TextBlock 
+                Text="Пароль" 
+                Grid.Column="2" 
+                Grid.Row="3" 
+                TextAlignment="Center" 
+                FontSize="14"/>
 
-            <TextBox Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="5" Grid.RowSpan="2" Background="AliceBlue" TextAlignment="Center" FontSize="14"
-                     Text="{Binding LoginReginVM.Login}"/>
-            <PasswordBox x:Name="PassBox" Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="5" Grid.RowSpan="2" Background="AliceBlue" FontSize="14" PasswordChanged="PassBox_PasswordChanged"/>
+            <Button 
+                Content="Войти" 
+                Grid.Column="1" 
+                Grid.Row="6" 
+                Grid.ColumnSpan="3" 
+                Margin="1" 
+                FontSize="11"
+                Command="{Binding LoginReginVM.LoginCommand}"/>
+            
+            <Button 
+                Content="Регистрация" 
+                Grid.Column="1" 
+                Grid.Row="7" 
+                Grid.ColumnSpan="3" 
+                Margin="1" 
+                FontSize="11" 
+                Click="GoToRegin"/>
+
+            <TextBox 
+                Grid.Column="0" 
+                Grid.Row="1" 
+                Grid.ColumnSpan="5" 
+                Grid.RowSpan="2" 
+                Background="AliceBlue" 
+                TextAlignment="Center" 
+                FontSize="14"
+                Text="{Binding LoginReginVM.Login}"/>
+            
+            <PasswordBox 
+                x:Name="PassBox" 
+                Grid.Column="0" 
+                Grid.Row="4" 
+                Grid.ColumnSpan="5" 
+                Grid.RowSpan="2" 
+                Background="AliceBlue" 
+                FontSize="14" 
+                PasswordChanged="PassBox_PasswordChanged"/>
             
         </Grid>
 
@@ -82,7 +131,9 @@
                     Command="{Binding LoginReginVM.UpdateCaptchaCommand}"/>
 
             </Grid>
+            
         </StackPanel>
 
     </Grid>
+    
 </Page>

@@ -15,14 +15,24 @@ namespace MainViewModels.VMs
     public class GameViewModel : ViewModelBase.ViewModelBase
     {
         private readonly DataManager data = Helper.DataModel;
-        public ObservableCollection<Games> GamesList { get; }
+        public ObservableCollection<Games> GamesList { get; private set; }
         public AsyncCommand AddGameAsync { get; }
         public AsyncCommand DeleteGameAsync { get; }
         public GameViewModel()
         {
-            AddGameAsync = new AsyncCommand(addNewGame, addCanExecute, Helper.ErrorHandler);
-            DeleteGameAsync = new AsyncCommand(deleteGame, deleteCanExecute, Helper.ErrorHandler);
+            AddGameAsync = new AsyncCommand(addNewGame, addGameCanExecute, Helper.ErrorHandler);
+            DeleteGameAsync = new AsyncCommand(deleteGame, deleteGameCanExecute, Helper.ErrorHandler);
             GamesList = new ObservableCollection<Games>(data.Game.Items);
+        }
+
+        public void Refresh()
+        {
+            GamesList = new(data.Game.Items);
+            _selectedGame = null;
+            _selectedGenre = null;
+            _gameName = "";
+            _gameDescription = "";
+            _gameSize = 0;
         }
         private async Task addNewGame(CancellationToken _)
         {
@@ -34,28 +44,26 @@ namespace MainViewModels.VMs
             };
             game.GamesGenres.Add(_selectedGenre);
             await data.Game.UpdateAsync(game);
-            GamesList.Add(game);
+            Refresh();
         }
         private async Task deleteGame(CancellationToken _)
         {
             await data.Game.DeleteAsync(_selectedGame.Id);
-            GamesList.Remove(_selectedGame);
+            Refresh();
         }
 
-        private bool addCanExecute()
+        private bool addGameCanExecute()
         {
             var game = data.Game.Items.FirstOrDefault(g => g.Name == _gameName);
             if (game != null) return false;
             return true;
         }
-
-        private bool deleteCanExecute()
+        private bool deleteGameCanExecute()
         {
             var game = data.Game.Items.FirstOrDefault(g => g.Name == _selectedGame.Name);
             if (game == null) return false;
             return true;
         }
-
         private bool CanExecute()
         {
             return true;

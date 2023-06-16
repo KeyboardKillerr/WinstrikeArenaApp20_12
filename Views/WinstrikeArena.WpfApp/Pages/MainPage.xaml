@@ -5,11 +5,14 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:WinstrikeArena.WpfApp.Pages"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+      d:DesignHeight="450"
+      d:DesignWidth="800"
       Title="MainPage"
-      Background="White" Loaded="Page_Loaded">
+      Background="White"
+      Loaded="Page_Loaded">
 
     <Grid>
+        
         <Grid.RowDefinitions>
             <RowDefinition Height="0.4*"/>
             <RowDefinition/>
@@ -25,14 +28,59 @@
             <ColumnDefinition/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <StackPanel Grid.Row="1" Grid.Column="1" Grid.RowSpan="5" Grid.ColumnSpan="5"/>
-        <TextBlock TextAlignment="Center" FontSize="20" Text="Меню"/>
-        <TextBlock Grid.Column="1" TextAlignment="Center" FontSize="20" Text="{Binding LoginReginVM.CurrentUser.Name}"/>
-        <Button Grid.Row="1" Content="Избранное" Click="GoToFavorites"/>
-        <Button Grid.Row="2" Content="Арендовать компьютер" Click="GoToRents"/>
-        <Button Grid.Row="3" Content="Профиль" Click="GoToProfile"/>
-        <Button Grid.Row="4" Content="Выход" Click="GoToLogin"/>
-        <Button x:Name="AdminBtn" Grid.Row="5" Content="Админ панель" Click="GoToAdmin" IsEnabled="{Binding LoginReginVM.IsAdmin, UpdateSourceTrigger=PropertyChanged}" IsEnabledChanged="AdminButton_IsEnabledChanged"/>
-        <Button x:Name="ModerBtn" Grid.Row="6" Content="Модер панель" Click="GoToModer" IsEnabled="{Binding LoginReginVM.IsModer, UpdateSourceTrigger=PropertyChanged}" IsEnabledChanged="ModerButton_IsEnabledChanged"/>
+        
+        <StackPanel
+            Grid.Row="1"
+            Grid.Column="1"
+            Grid.RowSpan="5"
+            Grid.ColumnSpan="5"/>
+        
+        <TextBlock
+            TextAlignment="Center" 
+            FontSize="20" Text="Меню"/>
+        
+        <TextBlock 
+            Grid.Column="1" 
+            TextAlignment="Center" 
+            FontSize="20" 
+            Text="{Binding LoginReginVM.CurrentUser.NickName}"/>
+        
+        <Button 
+            Grid.Row="1" 
+            Content="Избранное" 
+            Click="GoToFavorites"/>
+        
+        <Button 
+            Grid.Row="2" 
+            Content="Арендовать компьютер" 
+            Click="GoToRents"/>
+        
+        <Button 
+            Grid.Row="3" 
+            Content="Профиль" 
+            Click="GoToProfile"/>
+        
+        <Button 
+            Grid.Row="4" 
+            Content="Выход" 
+            Command="{Binding LoginReginVM.UnlogCommand}"/>
+        
+        <Button 
+            x:Name="AdminBtn" 
+            Grid.Row="5" 
+            Content="Админ панель" 
+            Click="GoToAdmin" />
+            <!--IsEnabled="{Binding LoginReginVM.IsAdmin, UpdateSourceTrigger=PropertyChanged}" 
+            IsEnabledChanged="AdminButton_IsEnabledChanged"-->
+        
+        <Button 
+            x:Name="ModerBtn" 
+            Grid.Row="6" 
+            Content="Модер панель" 
+            Click="GoToModer"/> 
+            <!--IsEnabled="{Binding LoginReginVM.IsModer, UpdateSourceTrigger=PropertyChanged}" 
+            IsEnabledChanged="ModerButton_IsEnabledChanged"-->
+        
     </Grid>
+    
 </Page>

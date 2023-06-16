@@ -37,7 +37,17 @@ namespace DataModels.DataProviders.Ef.Core.Repositories
         public async Task<int> UpdateAsync(Users table)
         {
             var item = await Items.FirstOrDefaultAsync(x => x.Id == table.Id);
-            if (item != default) Context.Update(table);
+            if (item != default)
+            {
+                item.NickName = table.NickName;
+                item.Password = table.Password;
+                item.Email = table.Email;
+                item.FullName = table.FullName;
+                item.Role = table.Role;
+                item.Rates = table.Rates;
+                item.FavoriteGames = table.FavoriteGames;
+                Context.Update(item);
+            }
             else await Context.AddAsync(table);
             return await Context.SaveChangesAsync();
         }

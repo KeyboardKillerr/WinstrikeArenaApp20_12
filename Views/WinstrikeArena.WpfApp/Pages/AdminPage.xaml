@@ -5,10 +5,13 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:WinstrikeArena.WpfApp.Pages"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
-      Title="AdminPage" Background="White">
+      d:DesignHeight="450" 
+      d:DesignWidth="800"
+      Title="AdminPage" 
+      Background="White">
 
     <Grid>
+        
         <Grid.RowDefinitions>
             <RowDefinition Height="0.4*"/>
             <RowDefinition/>
@@ -23,15 +26,50 @@
             <ColumnDefinition/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <Grid Grid.Row="1" Grid.Column="1" Grid.RowSpan="5" Grid.ColumnSpan="5">
+        
+        <Grid
+            Grid.Row="1"
+            Grid.Column="1"
+            Grid.RowSpan="5"
+            Grid.ColumnSpan="5">
 
         </Grid>
-        <TextBlock TextAlignment="Center" FontSize="20" Text="Меню"/>
-        <TextBlock Grid.Column="1" TextAlignment="Center" FontSize="20" Text="{Binding Login}"/>
-        <Button Grid.Row="1" Content="Управление играми и жанрами" Click="GoToGamesAndGenres"/>
-        <Button Grid.Row="2" Content="Управление компьютерами" Click="GoToComputers"/>
-        <Button Grid.Row="3" Content="Управление пользователями" Click="GoToUsers"/>
-        <Button Grid.Row="4" Content="Просмотр логов" Click="GoToLogs"/>
-        <Button Grid.Row="5" Content="Назад" Click="GoToGames"/>
+        
+        <TextBlock
+            TextAlignment="Center"
+            FontSize="20" Text="Меню"/>
+        
+        <TextBlock
+            Grid.Column="1"
+            TextAlignment="Center"
+            FontSize="20"
+            Text="{Binding LoginReginVM.CurrentUser.NickName}"/>
+        
+        <Button 
+            Grid.Row="1" 
+            Content="Управление играми и жанрами" 
+            Click="GoToGamesAndGenres"/>
+        
+        <Button 
+            Grid.Row="2" 
+            Content="Управление компьютерами" 
+            Click="GoToComputers"/>
+        
+        <Button 
+            Grid.Row="3" 
+            Content="Управление пользователями" 
+            Click="GoToUsers"/>
+        
+        <Button 
+            Grid.Row="4" 
+            Content="Просмотр логов" 
+            Click="GoToLogs"/>
+        
+        <Button 
+            Grid.Row="5" 
+            Content="Назад" 
+            Click="GoToMain"/>
+        
     </Grid>
+    
 </Page>

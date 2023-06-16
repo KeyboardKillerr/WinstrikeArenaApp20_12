@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MainViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +21,13 @@ namespace WinstrikeArena.WpfApp.Pages
     /// </summary>
     public partial class ModerPage : Page
     {
+        private DataViewModel model;
         public ModerPage()
         {
             InitializeComponent();
+            DataContext = App.viewModel;
+            if (DataContext is DataViewModel viewmodel) model = viewmodel;
         }
+        private void GoToMain(object sender, RoutedEventArgs e) => SetHelper.NaviToMain(null);
     }
 }

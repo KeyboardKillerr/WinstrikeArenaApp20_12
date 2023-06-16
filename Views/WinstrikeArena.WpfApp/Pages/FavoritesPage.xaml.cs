@@ -29,6 +29,6 @@ namespace WinstrikeArena.WpfApp.Pages
             if (DataContext is DataViewModel viewmodel) model = viewmodel;
         }
 
-        private void GoToGames(object sender, RoutedEventArgs e) => SetHelper.NaviToMain(null);
+        private void GoToMain(object sender, RoutedEventArgs e) => SetHelper.NaviToMain(null);
     }
 }

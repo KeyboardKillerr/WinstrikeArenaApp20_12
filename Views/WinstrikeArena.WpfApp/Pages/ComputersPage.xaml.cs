@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MainViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +21,13 @@ namespace WinstrikeArena.WpfApp.Pages
     /// </summary>
     public partial class ComputersPage : Page
     {
+        private DataViewModel model;
         public ComputersPage()
         {
             InitializeComponent();
+            DataContext = App.viewModel;
+            if (DataContext is DataViewModel viewmodel) model = viewmodel;
         }
+        private void GoToAdmin(object sender, RoutedEventArgs e) => SetHelper.NaviToAdmin(null);
     }
 }
